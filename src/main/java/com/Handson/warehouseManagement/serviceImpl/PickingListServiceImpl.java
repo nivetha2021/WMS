@@ -52,13 +52,13 @@ public class PickingListServiceImpl implements PickingListService {
         return pickingListRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Picking List not found with ID: " + id));
     }
-
     @Override
     public void markedItemAsPicked(Long pickingListId) {
         PickingList pickingList = pickingListRepository.findById(pickingListId)
                 .orElseThrow(() -> new RuntimeException("Picking List not found with ID: " + pickingListId));
 
         pickingList.setStatus("Completed");
+        //picking list save
         pickingListRepository.save(pickingList);
     }
 }
