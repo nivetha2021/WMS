@@ -1,9 +1,6 @@
 package com.Handson.warehouseManagement.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -13,8 +10,14 @@ public class Shipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long orderId;
+    //order table: each order is placed by a customer, but a customer can place many orders
+    //customer table: a customer can have many orders, but each order belongs to only one customer
+    //many:order, one:customer & vice versa
+    @ManyToOne    //relationship btw 2 tables
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
     private LocalDateTime shipmentDate;
+    private LocalDateTime dispatchDate;
     private String status;
 
     public long getId() {
@@ -25,12 +28,12 @@ public class Shipment {
         this.id = id;
     }
 
-    public long getOrderId() {
-        return orderId;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public LocalDateTime getShipmentDate() {
@@ -39,6 +42,14 @@ public class Shipment {
 
     public void setShipmentDate(LocalDateTime shipmentDate) {
         this.shipmentDate = shipmentDate;
+    }
+
+    public LocalDateTime getDispatchDate() {
+        return dispatchDate;
+    }
+
+    public void setDispatchDate(LocalDateTime dispatchDate) {
+        this.dispatchDate = dispatchDate;
     }
 
     public String getStatus() {
@@ -53,8 +64,9 @@ public class Shipment {
     public String toString() {
         return "Shipment{" +
                 "id=" + id +
-                ", orderId=" + orderId +
+                ", order=" + order +
                 ", shipmentDate=" + shipmentDate +
+                ", dispatchDate=" + dispatchDate +
                 ", status='" + status + '\'' +
                 '}';
     }
