@@ -1,0 +1,22 @@
+GIT
+    git is a version control system
+    it helps you keep track of code changes
+    it is used to collaborate on code
+
+GITHUB
+    it is a web based git repo hosting service
+    github alternatives
+        BITBucket
+        GITBucket
+
+1. How to bring the folder which is created in the github repo into the local ?
+    keep the respected class path > git clone paste the link
+2. cmd to change the classpath: cd folder name
+NOTE:- .git file is acting as a bridge between local folder and git repo
+
+3. Create a file in the local folder and make it appear in the github repo
+    * I created a readme file.
+    * now the file is in working folder
+
+    GITHUB --> GIT copy folder --> Working folder --> file1
+   (file1)     (file1)            (to copy folder)    readme.txt(untracked)=not yet moved
